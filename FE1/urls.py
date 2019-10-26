@@ -10,5 +10,5 @@ import os
 
 urlpatterns = [
     path('',views.index,name='index'),
-    path('simulator',views.simulator,name='simulator'),
+    path('simulator/<str:lang>',views.simulator,name='simulator'),
 ]

@@ -16,8 +16,7 @@ from Plot_modules.plottingRessspi import *
 def index(request):
     return  render(request, 'FE1/index.html',{})
 
-def simulator(request):
-    lang='eng'
+def simulator(request,lang):
     lang_text=langText(lang)
 
     if request.method =='POST':
