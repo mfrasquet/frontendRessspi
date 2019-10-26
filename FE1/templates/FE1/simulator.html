@@ -1,0 +1,571 @@
+{% extends 'FE1/base.html'%}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <h4>{{lang_text.Form_1}}</h4>
+    </div>
+        <form method="POST">
+            {% csrf_token %}
+            <section class="section">
+            <div class="row">
+                <div class="col l6">
+                        <h6><i class="material-icons back-text">settings_applications</i> {{lang_text.Form_3}}</h6>
+
+                    <div class="card-panel" style="background-color: rgb(255, 226, 188)">
+                        <div class="row" style="display: flex;align-items: center;justify-content: center;">
+                                <div class="col l8">
+                                <div class="navigation">
+                                    <span>  {{lang_text.Manual_8}}</span>
+                                </div>
+                            </div>
+                            <div class="col l4">
+                                <input name="num_loops" value="{{form.num_loops.value|default:""}}" >
+                                <span class="red-text">{{form.num_loops.errors}}</span> 
+                            </div>
+                        </div>    
+                        <div class="row" style="display: flex;align-items: center;justify-content: center;">
+                            <div class="col l8">
+                                <div class="navigation">
+                                    <span>  {{lang_text.Manual_9}}</span>
+                                </div>
+                            </div>
+                            <div class="col l4">
+                                <input name="n_coll_loop" value="{{form.n_coll_loop.value|default:""}}" >
+                                <span class="red-text">{{form.n_coll_loop.errors}}</span> 
+                            </div>
+                        </div>
+                        <div class="row" style="display: flex;align-items: center;justify-content: center;">
+                            <div class="col l8">
+                                <div class="navigation">
+                                    <span>  {{lang_text.Manual_10}}</span>
+                                </div>
+                            </div>
+                            <div class="col l4">
+                                <input name="almVolumen" value="{{form.almVolumen.value|default:0}}" >
+                                <span class="red-text">{{form.almVolumen.errors}}</span> 
+                            </div>
+                        </div>
+                        <div class="row" style="display: flex;align-items: center;justify-content: center;">
+                            <div class="col l6">
+                                <div class="navigation">
+                                    <span> {{lang_text.Manual_11}}</span>
+                                </div>
+                            </div>
+                            <div class="col l6" id="scheme">
+                                <div class="input-field" >
+                                    <select name='type_integration'>
+                                        <option value="" disabled="" selected>{{lang_text.Manual_12}}</option>
+                                        <option value="SL_L_P"{% if form.type_integration.value == "SL_L_P" %} selected {%endif%}>SL_L_P</option>
+                                        <option value="SL_L_PS"{% if form.type_integration.value == "SL_L_PS" %} selected {%endif%}>SL_L_PS</option>
+                                        <option value="SL_L_RF"{% if form.type_integration.value == "SL_L_RF" %} selected {%endif%}>SL_L_RF</option>
+                                        <option value="SL_S_FW"{% if form.type_integration.value == "SL_S_FW" %} selected {%endif%}>SL_S_FW</option>
+                                        <option value="SL_S_FWS" {% if form.type_integration.value == "SL_S_FWS" %} selected {%endif%}>SL_S_FWS</option>
+                                        <option value="SL_S_PD"{% if form.type_integration.value == "SL_S_PD" %} selected {%endif%}>SL_S_PD</option>
+                                        <option value="SL_L_S"{% if form.type_integration.value == "SL_L_S" %} selected {%endif%}>SL_L_S</option>
+                                        <option value="SL_L_S3"{% if form.type_integration.value == "SL_L_S3" %} selected {%endif%}>SL_L_S3</option>
+                                        <option value="PL_E_PM"{% if form.type_integration.value == "PL_E_PM" %} selected {%endif%}>PL_E_PM</option>                                               </select>
+                                    <span class="red-text">{{form.type_integration.errors}}</span>
+                                    </select>    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col l6">
+                        <h6><i class="material-icons back-text">monetization_on</i> {{lang_text.Form_20}}</h6>
+                    <div class="card-panel">
+                        {% csrf_token %}
+                        <div class="navigation">
+                            <span>  {{lang_text.Form_21}}</span>
+                        </div>
+                        <div class="row">
+                            <div class="col l5">
+                                <div class="input-field">
+                                    <select name='fuel'>
+                                        <option value="" disabled="" selected="">{{lang_text.Form_22}}</option>
+                                        <option value="NG" {% if form.fuel.value == "NG" %} selected {%endif%}>{{lang_text.Form_23}}</option>
+                                        <option value="LNG"{% if form.fuel.value == "LNG" %} selected {%endif%}>{{lang_text.Form_24}}</option>
+                                        <option value="Electricity"{% if form.fuel.value == "Electricity" %} selected {%endif%}>{{lang_text.Form_25}}</option>
+                                        <option value="Propane"{% if form.fuel.value == "Propane" %} selected {%endif%}>{{lang_text.Form_26}}</option>
+                                        <option value="Butane"{% if form.fuel.value == "Butane" %} selected {%endif%}>{{lang_text.Form_27}}</option>
+                                        <option value="Biomass"{% if form.fuel.value == "Biomass" %} selected {%endif%}>{{lang_text.Form_28}}</option>
+                                        <option value="Air-propane"{% if form.fuel.value == "Air-propane" %} selected {%endif%}>{{lang_text.Form_29}}</option>
+                                        <option value="Fueloil1"{% if form.fuel.value == "Fueloil1" %} selected {%endif%}>Fueloil-1</option>
+                                        <option value="Fueloil2"{% if form.fuel.value == "Fueloil2" %} selected {%endif%}>Fueloil-2</option>
+                                        <option value="Fueloil3"{% if form.fuel.value == "Fueloil3" %} selected {%endif%}>Fueloil-3</option>
+                                        <option value="Gasoil-B"{% if form.fuel.value == "Gasoil-B" %} selected {%endif%}>{{lang_text.Form_30}}</option>
+                                        <option value="Gasoil-C"{% if form.fuel.value == "Gasoil-C" %} selected {%endif%}>{{lang_text.Form_31}}</option>    
+                                    </select>
+                                    <span class="red-text">{{form.fuel.errors}}</span>
+                                </div>
+                            </div>
+                            <div class="col l3">
+                                <div class="input-field">
+                                    <input name="fuelPrice" placeholder="{{lang_text.Form_32}}" value="{{form.fuelPrice.value|default:""}}">
+                                    <span class="red-text">{{form.fuelPrice.errors}}</span>
+                                </div>
+
+                            </div>
+                            <div class="col l4">
+                                <div class="input-field">
+                                    <select name='fuelUnit'>
+                                        <option value="" disabled="" selected="">{{lang_text.Form_33}}</option>
+                                        <option value="eur_kWh"{% if form.fuelUnit.value == "eur_kWh" %} selected {%endif%}>€/kWh</option>
+                                        <option value="eur_litre"{% if form.fuelUnit.value == "eur_litre" %} selected {%endif%}>{{lang_text.Form_100}}</option>
+                                        <option value="eur_m3"{% if form.fuelUnit.value == "eur_m3" %} selected {%endif%}>€/m3</option>
+                                        <option value="eur_kg"{% if form.fuelUnit.value == "eur_kg" %} selected {%endif%}>€/kg</option>
+                                    </select>
+                                    <span class="red-text">{{form.fuelUnit.errors}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" style="display: flex;align-items: center;justify-content: center;">
+                                <div class="col l6">
+                                <span>{{lang_text.Form_34}}:</span> 
+                            </div>
+                            <div class="col l6">
+                                <div class="input-field">
+                                    <input name="co2TonPrice" placeholder="Precio tonelada CO2" value="{{form.co2TonPrice.value|default:"0"}}">
+                                    <span class="red-text">{{form.co2TonPrice.errors}}</span>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="navigation">
+                            <span>  {{lang_text.Form_35}}</span>
+                        </div>
+                        <div class="row">
+                            <div class="col l12">
+                                <div class="input-field">
+                                    <select name='businessModel'>
+                                        <!-- <option value="" disabled="" selected="">Modelo negocio</option> -->
+                                        <option value="turnkey"{% if form.businessModel.value == "turnkey" %} selected {%endif%}>{{lang_text.Form_36}}</option>
+                                        <!-- <option value="ESCO" {% if form.businessModel.value == "ESCO" %} selected {%endif%}>Compra de energía</option> -->
+                                        <!-- <option value="Renting"{% if form.businessModel.value == "Renting" %} selected {%endif%}>Renting</option> -->
+                                        
+                                    </select>
+                                    <span class="red-text">{{form.businessModel.errors}}</span>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>    
+            </div>
+            <div class="row">
+                <div class="col l12">
+                    <h6><i class="material-icons back-text">place</i>  {{lang_text.Form_38}}</h6>
+                    <div class="card-panel">     
+                        <div class="row">
+                            <div class="col l7">
+                                <div class="navigation">
+                                    <span>  {{lang_text.Form_99}}</span>
+                                </div>
+                                <div class="row" style="display: flex;align-items: center;justify-content: center;">
+                                    <div class="col l12">
+                                        <div class="input-field">
+                                            <select name='location' >
+                                                <option value="" disabled="" selected="">{{lang_text.Form_98}}</option>
+                                                <option{% if form.location.value == "Albacete" %} selected {%endif%}>Albacete</option>
+                                                <option{% if form.location.value == "Alicante" %} selected {%endif%}>Alicante</option>
+                                                <option{% if form.location.value == "Almeria" %} selected {%endif%}>Almeria</option>
+                                                <option{% if form.location.value == "Almoradi" %} selected {%endif%}>Almoradi</option>
+                                                <option{% if form.location.value == "Araba" %} selected {%endif%}>Araba</option>
+                                                <option{% if form.location.value == "Avila" %} selected {%endif%}>Avila</option>
+                                                </select>
+                                            <span class="red-text">{{form.location.errors}}</span>
+                                        </div>
+                                    </div>
+  
+                                </div>
+                                <div class="row">
+                                    <div class="col l6">
+                                        <div class="input-field">
+                                            <input name="surface" placeholder="{{lang_text.Form_40}}" value="{{form.surface.value|default:""}}">
+                                            <span class="red-text">{{form.surface.errors}}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col l6">
+                                        <div class="input-field">
+                                            <select name='terrain' >
+                                                <option value="" disabled="" selected="">{{lang_text.Form_41}}</option>
+                                                <option value="clean_ground"{% if form.terrain.value == "clean_ground" %} selected {%endif%}>{{lang_text.Form_42}}</option>
+                                                <option value="dirty_ground"{% if form.terrain.value == "dirty_ground" %} selected {%endif%}>{{lang_text.Form_43}}</option>
+                                                <option value="rooftop_concrete"{% if form.terrain.value == "rooftop_concrete" %} selected {%endif%}>{{lang_text.Form_44}}</option>
+                                                <option value="rooftop_sandwich"{% if form.terrain.value == "rooftop_sandwich" %} selected {%endif%}>{{lang_text.Form_45}}</option>
+                                                <option value="other"{% if form.terrain.value == "other" %} selected {%endif%}>{{lang_text.Form_46}}</option>
+                                            </select>
+                                            <span class="red-text">{{form.terrain.errors}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col l12">
+                                        <div class="input-field">
+                                            <input name="distance" placeholder="{{lang_text.Form_47}}" value="{{form.surface.value|default:""}}">
+                                            <span class="red-text">{{form.distance.errors}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col l5">
+                                <div class="navigation">
+                                    <span>  {{lang_text.Form_48}}</span>
+                                </div>
+                                <div class="row">
+                                    <div class="col l12">
+                                        <div class="input-field">
+                                            <select name='orientation' >
+                                                <!-- <option value="" disabled="" selected="">Orientación</option> -->
+                                                <option value="NS"{% if form.orientation.value == "NS" %} selected {%endif%}>{{lang_text.Form_49}}</option>
+                                                <!-- <option value="EW"{% if form.orientation.value == "EW" %} selected {%endif%}>Este-Oeste</option> -->
+                                            </select>
+                                            <span style="font-size: 12px; color: darkolivegreen"> <i>{{lang_text.Form_50}}</i> </span>
+                                            <span class="red-text">{{form.orientation.errors}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col l12">
+                                        <div class="input-field">
+                                            <select name='inclination' >
+                                                <!-- <option value="" disabled="" selected="">Inclinación</option> -->
+                                                <option value="flat"{% if form.inclination.value == "flat" %} selected {%endif%}>{{lang_text.Form_51}}</option>
+                                                <!-- <option value="soft-tilt"{% if form.inclination.value == "soft-tilt" %} selected {%endif%}>Inclinación suave (<10º)</option>-->
+                                                <!-- <option value="extreme-tilt"{% if form.inclination.value == "extreme-tilt" %} selected {%endif%}>Inclinación pronunciada (>10º)</option></10>-->
+                                            </select>
+                                            <span style="font-size: 12px; color: darkolivegreen"> <i>{{lang_text.Form_52}}</i> </span>
+                                            
+                                            <span class="red-text">{{form.inclination.errors}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col l12">
+                                        <div class="input-field">
+                                            <select name='shadows' >
+                                                <!-- <option value="" disabled="" selected="">Sombras</option> -->
+                                                <option value="free"{% if form.shadows.value == "free" %} selected {%endif%}>{{lang_text.Form_53}}</option>
+                                                <!--<option value="morning"{% if form.shadows.value == "morning" %} selected {%endif%}>Sombreado por las mañanas</option> -->
+                                                <!--<option value="afternoon"{% if form.shadows.value == "afternoon" %} selected {%endif%}>Sombreado por las tardes</option> -->
+                                            </select>
+                                            <span style="font-size: 12px; color: darkolivegreen"> <i>{{lang_text.Form_54}}</i> </span>
+                                            <span class="red-text">{{form.shadows.errors}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                   
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                    <div class="col l12">
+                        <h6><i class="material-icons back-text">whatshot</i> {{lang_text.Form_55}}</h6>
+                        <div class="card-panel">     
+                            <div class="row">
+                                <div class="col l6">
+                                    <div class="navigation">
+                                        <span> {{lang_text.Form_56}}</span>
+                                    </div>
+                                    <div class="row">
+                                            <div class="col l6">
+                                                <div class="input-field">
+                                                    <select name='fluid'>
+                                                        <option value="" disabled="" selected="">{{lang_text.Form_57}}</option>
+                                                        <option value="water"{% if form.fluid.value == "water" %} selected {%endif%}>{{lang_text.Form_58}}</option>
+                                                        <option value="steam"{% if form.fluid.value == "steam" %} selected {%endif%}>{{lang_text.Form_59}}</option>
+                                                        <option value="oil"{% if form.fluid.value == "oil" %} selected {%endif%}>{{lang_text.Form_60}}</option>
+                                                    </select>
+                                                    <span class="red-text">{{form.fluid.errors}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="col l3">
+                                                    <div class="input-field">
+                                                <input name="pressure" placeholder="{{lang_text.Form_61}}" value="{{form.pressure.value|default:""}}">
+                                                <span class="red-text">{{form.pressure.errors}}</span>
+                                                </div>
+                
+                                            </div>
+                                            <div class="col l3">
+                                                <div class="input-field">
+                                                    <select name='pressureUnit'>
+                                                        <option value="" disabled="" selected="">{{lang_text.Form_63}}</option>
+                                                        <option value="bar"{% if form.pressureUnit.value == "bar" %} selected {%endif%}>bar</option>
+                                                        <option value="MPa"{% if form.pressureUnit.value == "MPa" %} selected {%endif%}>MPa</option>
+                                                        <option value="psi"{% if form.pressureUnit.value == "psi" %} selected {%endif%}>psi</option>
+                                                    </select>
+                                                    <span class="red-text">{{form.pressureUnit.errors}}</span>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col l6">
+                                            <div class="input-field">
+                                                <input name="tempIN" placeholder="{{lang_text.Form_90}}" value="{{form.tempIN.value|default:""}}">
+                                                <span>{{lang_text.Form_92}}</span>
+                                                <span class="red-text">{{form.tempIN.errors}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col l6">
+                                            <div class="input-field">
+                                                <input name="tempOUT" placeholder="{{lang_text.Form_91}}" value="{{form.tempOUT.value|default:""}}">
+                                                <span>{{lang_text.Form_93}}</span>
+                                                <span class="red-text">{{form.tempOUT.errors}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col l6">
+                                    <div class="navigation">
+                                        <span>  {{lang_text.Form_65}}</span>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col l12">
+                                            <div class="input-field">
+                                                <select name='connection' >
+                                                    <option value="" disabled="" selected="">{{lang_text.Form_65}}</option>
+                                                    <option value="process"{% if form.connection.value == "process" %} selected {%endif%}>{{lang_text.Form_66}}</option>
+                                                    <option value="storage"{% if form.connection.value == "storage" %} selected {%endif%}>{{lang_text.Form_67}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col l12">
+                                            <div class="input-field">
+                                                <span>{{lang_text.Form_68}}</span>
+                                                <textarea name="process" placeholder="{{lang_text.Form_69}}" value="{{form.process.text|default:""}}"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                       
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                        <div class="col l12">
+                            <h6><i class="material-icons back-text">poll</i>{{lang_text.Form_70}}</h6>
+                            <div class="card-panel">     
+                                <div class="row">
+                                    <div class="col l4">
+                                        <div class="navigation">
+                                            <span style="font-size: 13px"> {{lang_text.Form_71|safe}}</span>
+                                        </div>
+                                        <div class="row">
+                                                <div class="col l7">
+                                                    <div class="input-field">
+                                                        <input name="demand" placeholder="{{lang_text.Form_72}}" value="{{form.demand.value|default:""}}">
+                                                        <span class="red-text">{{form.demand.errors}}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="col l5">
+                                                    <div class="input-field">
+                                                        <select name='demandUnit'>
+                                                            <option value="" disabled="" selected="">{{lang_text.Form_73}}</option>
+                                                            <option value="kWh"{% if form.demandUnit.value == "kWh" %} selected {%endif%}>kWh/{{lang_text.det_19}}</option>
+                                                            <option value="MWh"{% if form.demandUnit.value == "MWh" %} selected {%endif%}>MWh/{{lang_text.det_19}}</option>
+                                                            <option value="KJ"{% if form.demandUnit.value == "KJ" %} selected {%endif%}>KJ/{{lang_text.det_19}}</option>
+                                                            <option value="BTU"{% if form.demandUnit.value == "BTU" %} selected {%endif%}>BTU/{{lang_text.det_19}}</option>
+                                                            <option value="kcal"{% if form.demandUnit.value == "kcal" %} selected {%endif%}>kcal/{{lang_text.det_19}}</option>
+                                                        </select>
+                                                        <span class="red-text">{{form.demandUnit.errors}}</span>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                        <div class="navigation">
+                                            <span>  {{lang_text.Form_74}}</span>
+                                        </div>
+                                        <div class="row">
+                                            
+                                            <div class="col l6"> 
+                                                <div class="input-field">
+                                                    <select name='hourINI'>
+                                                        <option value="" disabled="" selected="">{{lang_text.Form_75}}</option>
+                                                        <option value=1 {% if form.hourINI.value == "1" %} selected {%endif%}>1</option>
+                                                        <option value=2 {% if form.hourINI.value == "2" %} selected {%endif%}>2</option>
+                                                        <option value=3 {% if form.hourINI.value == "3" %} selected {%endif%}>3</option>
+                                                        <option value=4 {% if form.hourINI.value == "4" %} selected {%endif%}>4</option>
+                                                        <option value=5 {% if form.hourINI.value == "5" %} selected {%endif%}>5</option>
+                                                        <option value=6 {% if form.hourINI.value == "6" %} selected {%endif%}>6</option>
+                                                        <option value=7 {% if form.hourINI.value == "7" %} selected {%endif%}>7</option>
+                                                        <option value=8 {% if form.hourINI.value == "8" %} selected {%endif%}>8</option>
+                                                        <option value=9 {% if form.hourINI.value == "9" %} selected {%endif%}>9</option>
+                                                        <option value=10 {% if form.hourINI.value == "10" %} selected {%endif%}>10</option>
+                                                        <option value=11 {% if form.hourINI.value == "11" %} selected {%endif%}>11</option>
+                                                        <option value=12 {% if form.hourINI.value == "12" %} selected {%endif%}>12</option>
+                                                        <option value=13 {% if form.hourINI.value == "13" %} selected {%endif%}>13</option>
+                                                        <option value=14 {% if form.hourINI.value == "14" %} selected {%endif%}>14</option>
+                                                        <option value=15 {% if form.hourINI.value == "15" %} selected {%endif%}>15</option>
+                                                        <option value=16 {% if form.hourINI.value == "16" %} selected {%endif%}>16</option>
+                                                        <option value=17 {% if form.hourINI.value == "17" %} selected {%endif%}>17</option>
+                                                        <option value=18 {% if form.hourINI.value == "18" %} selected {%endif%}>18</option>
+                                                        <option value=19 {% if form.hourINI.value == "19" %} selected {%endif%}>19</option>
+                                                        <option value=20 {% if form.hourINI.value == "20" %} selected {%endif%}>20</option>
+                                                        <option value=21 {% if form.hourINI.value == "21" %} selected {%endif%}>21</option>
+                                                        <option value=22 {% if form.hourINI.value == "22" %} selected {%endif%}>22</option>
+                                                        <option value=23 {% if form.hourINI.value == "23" %} selected {%endif%}>23</option>
+                                                        <option value=24 {% if form.hourINI.value == "24" %} selected {%endif%}>24</option>
+                                                    </select>
+                                                    <span class="red-text">{{form.hourINI.errors}}</span>
+                                                </div>
+                                            </div>
+                                            <div class="col l6"> 
+                                                <div class="input-field">
+                                                    <select name='hourEND'>
+                                                        <option value="" disabled="" selected="">{{lang_text.Form_76}}</option>
+                                                        <option value=1 {% if form.hourEND.value == "1" %} selected {%endif%}>1</option>
+                                                        <option value=2 {% if form.hourEND.value == "2" %} selected {%endif%}>2</option>
+                                                        <option value=3 {% if form.hourEND.value == "3" %} selected {%endif%}>3</option>
+                                                        <option value=4 {% if form.hourEND.value == "4" %} selected {%endif%}>4</option>
+                                                        <option value=5 {% if form.hourEND.value == "5" %} selected {%endif%}>5</option>
+                                                        <option value=6 {% if form.hourEND.value == "6" %} selected {%endif%}>6</option>
+                                                        <option value=7 {% if form.hourEND.value == "7" %} selected {%endif%}>7</option>
+                                                        <option value=8 {% if form.hourEND.value == "8" %} selected {%endif%}>8</option>
+                                                        <option value=9 {% if form.hourEND.value == "9" %} selected {%endif%}>9</option>
+                                                        <option value=10 {% if form.hourEND.value == "10" %} selected {%endif%}>10</option>
+                                                        <option value=11 {% if form.hourEND.value == "11" %} selected {%endif%}>11</option>
+                                                        <option value=12 {% if form.hourEND.value == "12" %} selected {%endif%}>12</option>
+                                                        <option value=13 {% if form.hourEND.value == "13" %} selected {%endif%}>13</option>
+                                                        <option value=14 {% if form.hourEND.value == "14" %} selected {%endif%}>14</option>
+                                                        <option value=15 {% if form.hourEND.value == "15" %} selected {%endif%}>15</option>
+                                                        <option value=16 {% if form.hourEND.value == "16" %} selected {%endif%}>16</option>
+                                                        <option value=17 {% if form.hourEND.value == "17" %} selected {%endif%}>17</option>
+                                                        <option value=18 {% if form.hourEND.value == "18" %} selected {%endif%}>18</option>
+                                                        <option value=19 {% if form.hourEND.value == "19" %} selected {%endif%}>19</option>
+                                                        <option value=20 {% if form.hourEND.value == "20" %} selected {%endif%}>20</option>
+                                                        <option value=21 {% if form.hourEND.value == "21" %} selected {%endif%}>21</option>
+                                                        <option value=22 {% if form.hourEND.value == "22" %} selected {%endif%}>22</option>
+                                                        <option value=23 {% if form.hourEND.value == "23" %} selected {%endif%}>23</option>
+                                                        <option value=24 {% if form.hourEND.value == "24" %} selected {%endif%}>24</option>
+                                   
+                                                    </select>
+                                                    <span class="red-text">{{form.hourEND.errors}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col l8">
+                                            <span style="font-size: 12px">{{lang_text.Form_77}}</span>
+                                            <br>
+                                            <br>
+                                            <div class="navigation">
+                                                <span>  {{lang_text.Form_78}}</span>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col l12">
+                                                    <br>
+                                                    <label >
+                                                        <input name="Mond" type="checkbox"{% if form.Mond.value == "on" %} checked {%endif%}>
+                                                        <span class="checkboxWeek">{{lang_text.Form_79}}</span>
+                                                    </label>
+                                                    <label >
+                                                        <input name="Tues" type="checkbox"{% if form.Tues.value == "on" %} checked {%endif%}>
+                                                        <span class="checkboxWeek">{{lang_text.Form_80}}</span>
+                                                    </label>
+                                                    <label>
+                                                        <input name="Wend" type="checkbox"{% if form.Wend.value == "on" %} checked {%endif%}>
+                                                        <span class="checkboxWeek">{{lang_text.Form_81}}</span>                                                        
+                                                    </label>
+                                                    <label >
+                                                        <input name="Thur" type="checkbox"{% if form.Thur.value == "on" %} checked {%endif%}>
+                                                        <span class="checkboxWeek">{{lang_text.Form_82}}</span>                                                        
+                                                    </label>
+                                                    <label >
+                                                        <input name="Fri" type="checkbox"{% if form.Fri.value == "on" %} checked {%endif%}>
+                                                        <span class="checkboxWeek">{{lang_text.Form_83}}</span>
+                                                    </label>
+                                                    <label >
+                                                        <input name="Sat" type="checkbox"{% if form.Sat.value == "on" %} checked {%endif%}>
+                                                        <span class="checkboxWeek">{{lang_text.Form_84}}</span>
+                                                    </label>    
+                                                    <label >
+                                                        <input name="Sun" type="checkbox"{% if form.Sun.value == "on" %} checked {%endif%}>
+                                                        <span class="checkboxWeek">{{lang_text.Form_85}}</span>
+                                                    </label>
+                                                                                                                                                                                                   
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <br>
+                                            <div class="navigation">
+                                                <span> {{lang_text.Form_86}}</span>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col l12">
+                                                    <br>
+                                                    <label >
+                                                        <input name="Jan" type="checkbox"{% if form.Jan.value == "on" %} checked {%endif%}>
+                                                        <span class="checkboxWeek">1</span>
+                                                    </label>
+                                                    <label >
+                                                        <input name="Feb" type="checkbox"{% if form.Feb.value == "on" %} checked {%endif%}>
+                                                        <span class="checkboxWeek">2</span>
+                                                    </label>
+                                                    <label>
+                                                        <input name="Mar" type="checkbox"{% if form.Mar.value == "on" %} checked {%endif%}>
+                                                        <span class="checkboxWeek">3</span>                                                        
+                                                    </label>
+                                                    <label >
+                                                        <input name="Apr" type="checkbox"{% if form.Apr.value == "on" %} checked {%endif%}>
+                                                        <span class="checkboxWeek">4</span>
+                                                    </label>  
+                                                    <label >
+                                                        <input name="May" type="checkbox"{% if form.May.value == "on" %} checked {%endif%}>
+                                                        <span class="checkboxWeek">5</span>                                                        
+                                                    </label>
+                                                    <label >
+                                                        <input name="Jun" type="checkbox"{% if form.Jun.value == "on" %} checked {%endif%}>
+                                                        <span class="checkboxWeek">6</span>
+                                                    </label>
+                                                    <label >
+                                                        <input name="Jul" type="checkbox"{% if form.Jul.value == "on" %} checked {%endif%}>
+                                                        <span class="checkboxWeek">7</span>
+                                                    </label>
+                                                    <label >
+                                                        <input name="Aug" type="checkbox"{% if form.Aug.value == "on" %} checked {%endif%}>
+                                                        <span class="checkboxWeek">8</span>
+                                                    </label>
+                                                    <label >
+                                                        <input name="Sep" type="checkbox"{% if form.Sep.value == "on" %} checked {%endif%}>
+                                                        <span class="checkboxWeek">9</span>
+                                                    </label>
+                                                    <label>
+                                                        <input name="Oct" type="checkbox"{% if form.Oct.value == "on" %} checked {%endif%}>
+                                                        <span class="checkboxWeek">10</span>                                                        
+                                                    </label>
+                                                    <label >
+                                                        <input name="Nov" type="checkbox"{% if form.Nov.value == "on" %} checked {%endif%}>
+                                                        <span class="checkboxWeek">11</span>                                                        
+                                                    </label>
+                                                    <label >
+                                                        <input name="Dec" type="checkbox"{% if form.Dec.value == "on" %} checked {%endif%}>
+                                                        <span class="checkboxWeek">12</span>
+                                                    </label>                                                                                                        
+                                                </div>    
+                                     
+                                            </div>
+                                            
+                                        </div>
+                                    
+                                </div>
+                           
+                            </div>
+                        </div>
+                    </div>
+        </section>
+        
+            <br>
+
+                <button type="submit" class="waves-effect waves-light btn-small center">{{lang_text.Form_87}}</button>   
+                </form>
+                <br>
+
+</div>
+
+
+{% endblock %}
