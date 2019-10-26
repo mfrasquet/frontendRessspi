@@ -2,7 +2,7 @@ def langText(lang):
     if lang=='spa':
         lang_text={
         #Index 
-        'index_1':'Energía solar para procesos industriales',
+        'index_1':'Ejemplo de Frontend para utilizar el simulador ressspi',
         'index_2':'ENTRAR',
 
         #Form
@@ -140,6 +140,7 @@ def langText(lang):
         'det_10':'% Ahorro solar:',
         'det_11':'Retorno: ',
         'det_12':'CO2 evitado: ',
+        'det_19':'año',
 
 
         
@@ -147,7 +148,7 @@ def langText(lang):
     if lang=='eng':
         lang_text={
         #Index 
-        'index_1':'Solar energy for industrial processes',
+        'index_1':'Frontend example for using ressspi simulator',
         'index_2':'ENTER',
        
         #Form
@@ -285,6 +286,7 @@ def langText(lang):
         'det_10':'% Solar savings:',
         'det_11':'Payback: ',
         'det_12':'CO2 avoided: ',
+        'det_19':'year',
         
 
         }
@@ -345,7 +347,7 @@ def fuelCalculator(fuel,fuelUnit,originalFuelPrice,co2TonPrice):
         else:
             priceFactor=1
     
-        Fuel_price=originalFuelPrice*priceFactor   #Price of fossil fuel in €/kWh
+    Fuel_price=originalFuelPrice*priceFactor   #Price of fossil fuel in €/kWh
     return [Fuel_price,co2factor]
 
 

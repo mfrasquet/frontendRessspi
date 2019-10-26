@@ -1,0 +1,81 @@
+{% extends 'FE1/base.html'%}
+
+{% block content %}
+
+<div class="container">
+        <hr>
+        <div class="row">
+            <h4>{{lang_text.det_1}} (v.{{version}})</h4>
+        </div>
+        <div class="row">
+            <div class="col l4" ><b>{{lang_text.det_2}}</b> {{results.sav1}} {{lang_text.det_EUR_YEAR}}</div>
+            <div class="col l3"><b>{{lang_text.det_10}}</b> {{results.solarNetFraction}}%</div>
+        </div>
+        <div class="row">
+            <div class="col l4" ><b>{{lang_text.det_3}}</b> {{results.Energy_bill}} {{lang_text.det_EUR_YEAR}}</div>
+            <div class="col l5"><b>{{lang_text.det_7}}</b> {{results.Fuel_price}} €/kWh</div>
+        </div>
+        <div class="row">
+            <div class="col l4"><b>{{lang_text.det_4}}</b> {{results.Investment}} €</div>
+            <div class="col l5"><b>{{lang_text.det_8}}</b> {{results.IRR}} %</div>
+            <div class="col l3"><b>{{lang_text.det_11}}</b> {{lang_text.det_19}} {{results.Amort}}</div>   
+        </div>
+        <div class="row">
+            <div class="col l4"><b>{{lang_text.det_5}}</b> {{results.Area_total}} m2</div>
+            <div class="col l5"><b>{{lang_text.det_9}}</b> {{results.Production_lim}} kWh/{{lang_text.det_19}}</div>
+            <div class="col l3" ><b>{{lang_text.det_12}}</b> {{results.tonCo2Saved}} Ton/{{lang_text.det_19}}</div>
+        </div>
+        <hr>
+
+        <div class="row">
+            <div class="col l6">
+
+                <img src="data:image/png;base64, {{image_prodMonths}}" width="100%" alt="prod_Months" />
+
+            </div>
+            <div class="col l6">
+
+                <img src="data:image/png;base64, {{image_finance}}" width="100%" alt="prod_Months" />
+
+            </div>    
+        </div>
+        <div class="row">
+            <div class="col l6">
+
+                <img src="data:image/png;base64, {{image_prodWinter}}" width="100%" alt="prod_Months" />
+
+            </div>
+            <div class="col l6">
+
+                <img src="data:image/png;base64, {{image_prodSummer}}" width="100%" alt="prod_Months" />
+
+            </div>    
+        </div>
+        <div class="row">
+            <div class="col l12">
+                <img src="data:image/png;base64, {{image_storageWinter}}" width="100%" alt="prod_Months" />
+            </div>  
+        </div>
+        <div class="row">
+            <div class="col l12">
+                <img src="data:image/png;base64, {{image_storageSummer}}" width="100%" alt="prod_Months" />
+            </div>  
+        </div>
+        <div class="row">
+            <div class="col l6">
+
+                <img src="data:image/png;base64, {{image_prop1}}" width="100%" alt="prod_Months" />
+
+            </div>
+            <div class="col l6">
+
+                <img src="data:image/png;base64, {{image_prop2}}" width="100%" alt="prod_Months" />
+
+            </div>    
+        </div>
+    
+        <br>
+    </div>
+
+
+{% endblock %}
